@@ -5,13 +5,16 @@ class ProductManager {
 
     addProduct(product) {
         const prod = this.products.find((prod) => prod.code === product.code)
-
+    
         if (prod) {
             console.log("Producto ya encontrado")
+        } else if (!product.title || !product.description || !product.price || !product.code || !product.stock || !product.thumbnail) {
+            throw new Error("Todos los campos obligatorios deben ser proporcionados.")
         } else {
             this.products.push(product)
-        }
+        }  
     }
+    
 
     getProducts() {
         console.log(this.products)
